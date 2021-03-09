@@ -1,0 +1,52 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Image Selector</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-button (click)="get1()">Post Image</ion-button>
+  <div class="ion-padding">
+    <ion-grid>
+      <ion-row class="center">
+        <ion-col size-sm-6>
+          <ion-button size="small" (click)="getPicture(1)">Show Camera</ion-button>
+        </ion-col>
+        <ion-col size-sm-6>
+          <ion-button size="small" (click)="getPicture(0)">Show Album</ion-button>
+        </ion-col>
+        <ion-col size-sm-6>
+          <ion-button size="small" (click)="pass()" href='/tabs/tab1'>Pass Image</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-item lines="none">
+      <ion-label>Return image file URI</ion-label>
+      <ion-toggle energized [(ngModel)]="useURI"></ion-toggle>
+    </ion-item>
+
+    <ion-card>
+      <ion-card-content>
+        <img [src]="imageData1" *ngIf="imageData1"/>
+      </ion-card-content>
+      <ion-card-header>
+        <ion-card-title>
+          <div *ngIf="useURI">
+            Using URI
+          </div>
+          <div *ngIf="!useURI">
+            Using Base64
+          </div>
+          <p *ngIf="useURI">
+            Your URI is {{ imageData1 }}
+          </p>
+          <p *ngIf="!useURI">
+            Your Base64 image has {{ (imageData1 + '').length }} bytes
+          </p>
+        </ion-card-title>
+      </ion-card-header>
+    </ion-card>
+  </div>
+</ion-content>
